@@ -862,6 +862,89 @@ section {
   }
 }
 
+
+/*--------------------------------------------------------------
+# Downloads
+--------------------------------------------------------------*/
+.downloads .accordion-list {
+  padding: 0 100px;
+}
+
+.downloads .accordion-list ul {
+  padding: 0;
+  list-style: none;
+}
+
+.downloads .accordion-list li+li {
+  margin-top: 15px;
+}
+
+.downloads .accordion-list li[data-aos=fade-up] {
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
+.downloads .accordion-list a[data-bs-toggle=collapse] {
+  display: block;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  padding: 0 30px;
+  outline: none;
+  cursor: pointer;
+}
+
+.downloads .accordion-list .icon-help {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  left: 20px;
+  color: #b1c0df;
+}
+
+.downloads .accordion-list .icon-show,
+.downloads .accordion-list .icon-close {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.downloads .accordion-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+
+.downloads .accordion-list .icon-show {
+  display: none;
+}
+
+.downloads .accordion-list a.collapsed {
+  color: #343a40;
+}
+
+.downloads .accordion-list a.collapsed:hover {
+  color: #3165D4 ;
+}
+
+.downloads .accordion-list a.collapsed .icon-show {
+  display: inline-block;
+}
+
+.downloads .accordion-list a.collapsed .icon-close {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .downloads .accordion-list {
+    padding: 0;
+  }
+}
+
 /*--------------------------------------------------------------
 # Frequently Asked Questions
 --------------------------------------------------------------*/

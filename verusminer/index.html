@@ -174,7 +174,7 @@
 
     <!-- ======= Download now ======= -->
 
-    <section id="downloads" class="faq section-bg">
+    <section id="downloads" class="downloads section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -190,9 +190,10 @@
               <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">1. Download VerusMiner</p>
-                <small class="text-muted">This is the mining application. Google play store release is not anymore available due to the new Google policies which restricts any mining applications to be released from the platform.</small><i class="bx bx-chevron-up icon-close"></i>
+                <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                <small class="text-muted">This is the mining application. Google play store release is not anymore available due to the new Google policies which restricts any mining applications to be released from the platform.</small>
                 <p>
                   <div class="d-grid">
                     <button class="btn btn-lg btn-success" type="button">
@@ -206,11 +207,12 @@
               <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-2">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">2. Download VerusBox</p>
-                <small class="text-muted">
-                  <p>This will be used to verify your download. There are different methods to verify the downloaded file but the easiest way is using the VerusBox app. Download it from Google Play or from the official Github release repository.</p>
-                </small><i class="bx bx-chevron-up icon-close"></i>
+                <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                <small class="text-muted">
+                  <p>This will be used to verify your download. There are different methods to verify the downloaded file but the easiest way is using the VerusBox app. Download it from Google Play or from the official Github release repository.</p>
+                </small>
                 <p>
                   <div class="d-grid gap-2">
                     <button class="btn btn-lg btn-success" type="button">
@@ -227,17 +229,15 @@
               <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-3">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">3. Verify Download</p>
-                <small class="text-muted">
-                  Scan the QR Code to verify
-                </small>
                 <i class="bx bx-chevron-up icon-close"></i>
-
               </a>
               <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                <small class="text-muted">
+                  <small class="text-muted"><p>Follow the steps</p></small>
+                </small>
                 <div class="card mb-1">
                   <!-- <img src="..." class="card-img-top" alt="..."> -->
                   <div class="card-body justify-content-center">
-                    <!-- <h5 class="card-title"></h5> -->
                     <p class="card-title">
                       <div class="row">
                         <div class="col-md-6 icon-box" data-aos="fade-up">
@@ -250,10 +250,27 @@
                         </div>
                         <div class="col-md-6 icon-box" data-aos="fade-up">
                           <div class="card text-center">
-                            <div class="card-body justify-content-center"><p id="app-qrcode"></p></div>
+                            <div class="card-header justify-content-center">
+                              <b class="text-muted">
+                                Scan the QR Code to verify
+                              </b>
+                            </div>
+                            <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center">
+                                <p id="qr-container">Loading ...</p>
+                              </div>
+                            </div>
                             <div class="card-footer">
-                              <p>Version 2.1.1</p>
-                              <p>Checksum: 4f29d86fe2dca6524772ff6fda8c07303a019635</p>
+                              <div>
+                                <div class="dropdown">
+                                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select version
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="qr-dd-container"></ul>
+                                </div>
+                              </div>
+                              <p><b>Version</b>: <i id="qr-dd-version"> - </i></p>
+                              <p><b>Checksum</b>: <p id="qr-dd-checksum"> - </p></p>
                             </div>
                           </div>
                         </div>
@@ -770,29 +787,21 @@
   <!-- QR Codejs -->
   <script type="text/javascript" src="assets/vendor/qrcodejs/jquery.min.js"></script>
   <script type="text/javascript" src="assets/vendor/qrcodejs/qrcode.min.js"></script>
+  <script type="text/javascript" src="assets/js/qr-manager.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    // new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
-    var qrcode = new QRCode(document.getElementById("app-qrcode"), {
-      width : 300,
-      height : 300
-    });
-
-    function makeCode () {		
-      var elText = document.getElementById("qr-code-value");
-      
-      // if (!elText.value) {
-      //   alert("Input a text");
-      //   elText.focus();
-      //   return;
-      // }
-      
-      qrcode.makeCode(elText.value);
-    }
-
-    makeCode();
+    let jsonData = QrManager().getReleases();
+    jsonData.then(function(json) {
+      QrManager().saveReleaseData(json);
+      QrManager().generateDropdownList('#qr-dd-container', json);
+      updateAppChecksumQR(json.length - 1);
+    })
+    .fail(function() {
+      console.log("error");
+      alert("Error retrieving data. Try to refresh the page. If error persist, inform the developer using the contacts below. Preferrably use discord.")
+    })
   </script>
 
 </body>

@@ -37,13 +37,23 @@
 </head>
 
 <body>
-
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top  header-transparent ">
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1><a href="index.html">VerusMiner</a></h1>
+        <h1><a href="index.html"><img src="assets/img/main.png" class="img-fluid" alt="">VerusMiner</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -90,7 +100,7 @@
         <div class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1" data-aos="fade-up">
           <div>
             <h1>Mine Verus coin now</h1>
-            <h2>Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner.<br><br>Harness the potential of Verus technology and unlock the ability to mine cryptocurrencies seamlessly, even with low-powered devices like old mobile phones. Begin your mining journey today by downloading the app.</h2>
+            <h2>Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner. Download now!<br><br></h2>
             <a href="https://github.com/pangz-lab/verus_miner-release" target="_blank" class="btn btn-dark"><i class="bx bxl-github"></i> Github Releases</a>
             <a href="#downloads" class="btn btn-success"><i class="bx bx-download"></i> Downloads</a>
             <!-- <a href="#" class="download-btn"><i class="bx bxl-play-store"></i> Google Play</a>
@@ -115,6 +125,7 @@
         <div class="section-title">
           <h2>App Features</h2>
           <!-- <p>Mining using your phone has never been easy. VerusMiner provides you with an easy setup so you don't have to worry what settings you need to start.</p> -->
+          <p>Begin your mining journey today by downloading the app.<br>Harness the potential of <a href="https://verus.io/">Verus technology</a> and unlock the ability to mine cryptocurrencies seamlessly, even with low-powered devices like old mobile phones.</p>
           <p>User-friendly setup that eliminates the need for you to fret over intricate settings, ensuring a seamless mining process directly from your phone.</p>
         </div>
 
@@ -193,12 +204,19 @@
                 <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                <small class="text-muted">This is the mining application. Google play store release is not anymore available due to the new Google policies which restricts any mining applications to be released from the platform.</small>
+                <small class="text-muted">This is the mining application.</small>
                 <p>
                   <div class="d-grid">
                     <button class="btn btn-lg btn-success" type="button">
                       <a href="https://github.com/pangz-lab/verus_miner-release/raw/main/latest-app.apk" target="_blank" class="btn btn-success"> <i class="bx bxl-android"></i> APK Download</a>
                     </button>
+                    <br>
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                      <div>
+                        Google play store release is not anymore available due to the new Google policies which restricts any mining applications to be released from the platform.
+                      </div>
+                    </div>
                   </div>
                 </p>
               </div>
@@ -211,7 +229,7 @@
               </a>
               <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                 <small class="text-muted">
-                  <p>This will be used to verify your download. There are different methods to verify the downloaded file but the easiest way is using the VerusBox app. Download it from Google Play or from the official Github release repository.</p>
+                  <p>This will be used to verify your download. Download from any of the link.</p>
                 </small>
                 <p>
                   <div class="d-grid gap-2">
@@ -221,6 +239,11 @@
                     <button class="btn btn-lg btn-dark" type="button">
                       <a href="https://github.com/pangz-lab/verus_box-release/releases" target="_blank" class="btn btn-dark"> <i class="bx bxl-github"></i> Github Release</a>
                     </button>
+                    <br>
+                    <div class="alert alert-primary d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                      <div>There are different methods to verify the downloaded file but the easiest way is using the VerusBox app.</div>
+                    </div>
                   </div>
                 </p>
               </div>
@@ -232,15 +255,18 @@
                 <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                <small class="text-muted">
+                <!-- <small class="text-muted">
                   <small class="text-muted"><p>Follow the steps</p></small>
-                </small>
+                </small> -->
                 <div class="card mb-1">
                   <!-- <img src="..." class="card-img-top" alt="..."> -->
                   <div class="card-body justify-content-center">
                     <p class="card-title">
                       <div class="row">
                         <div class="col-md-6 icon-box" data-aos="fade-up">
+                          <div class="alert alert-light" role="alert">
+                            Verification is not a required step but is <b>highly recommended</b> to make sure you're using an officially released app.
+                          </div>
                           <ol>
                             <li> Open VerusBox</li>
                             <li> Go to Tools > Mining</li>
@@ -279,6 +305,34 @@
                     <!-- <div class="card-text">
                       <p class="text-muted"> test </p>
                     </div> -->
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li data-aos="fade-up">
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-4">
+                <i class="bx bx-chevron-down icon-show"></i>
+                <p class="h2">4. Install</p>
+                <i class="bx bx-chevron-up icon-close"></i>
+              </a>
+              <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                <!-- <small class="text-muted">
+                  <p>Install</p>
+                </small> -->
+                <!-- <p>
+                  <div class="d-grid gap-2">Install the downloaded app file after verifying.</div>
+                </p> -->
+                <!-- <div class="alert alert-light" role="alert"> -->
+                <p>Install the downloaded file.</p>
+                <!-- </div> -->
+                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                  <div>
+                    <b>Note:</b>
+                    <ol>
+                      <li>If you have an old version of the app installed from google play, you need to uninstall it first.</li>
+                      <li>Enable installation from external source to allow the downloaded app to be installed.</li>
+                    </ol>
                   </div>
                 </div>
               </div>

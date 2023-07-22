@@ -1,3 +1,4 @@
+const screenWidth = $(document).width();
 function updateAppChecksumQR(index) {
     const releaseData = QrManager().getReleaseData();
     QrManager().showReleaseQrDetails(
@@ -38,17 +39,21 @@ function QrManager() {
             $(parentElement).html(items);
         },
         showReleaseQrDetails: (qrContainer, versionContainer, versionChecksumContainer, data) => {
+            const qrSize = screenWidth < 450 ? screenWidth - 150 : 350;
             const version = data.name;
             const checksum = data.hash + '-' + data.checksum;
             const versionLink = `<a href="`+repoBaseUrl+version+`" target='_blank'class="link-dark">${version} <i class="bi-box-arrow-in-up-right"></i></a>`;
             $(versionContainer).html(versionLink);
             $(versionChecksumContainer).html(checksum);
             
+            console.log("screen width");
+            console.log($( document ).width());
+            
             const qrContainerRef = document.getElementById(qrContainer);
             qrContainerRef.innerHTML = "";
             var qrcode = new QRCode(qrContainerRef, {
-                width : 280,
-                height : 280
+                width : qrSize,
+                height : qrSize
             });
             qrcode.makeCode(checksum);
         }

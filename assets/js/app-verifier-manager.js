@@ -1,7 +1,6 @@
-const screenWidth = $(document).width();
 function updateAppChecksumQR(index) {
-    const releaseData = QrManager().getReleaseData();
-    QrManager().showReleaseQrDetails(
+    const releaseData = AppVerifierManager().getReleaseData();
+    AppVerifierManager().showReleaseQrDetails(
       "qr-container",
       "#qr-dd-version",
       "#qr-dd-checksum",
@@ -9,7 +8,7 @@ function updateAppChecksumQR(index) {
     );
 }
 
-function QrManager() {
+function AppVerifierManager() {
     const sessionKey = "verusMinerAppReleaseSummary";
     const appReleaseJson = "https://raw.githubusercontent.com/pangz-lab/verus_miner-release/main/app-release.json";
     const repoBaseUrl = "https://github.com/pangz-lab/verus_miner-release/tree/main/";
@@ -45,9 +44,6 @@ function QrManager() {
             const versionLink = `<a href="`+repoBaseUrl+version+`" target='_blank'class="link-dark">${version} <i class="bi-box-arrow-in-up-right"></i></a>`;
             $(versionContainer).html(versionLink);
             $(versionChecksumContainer).html(checksum);
-            
-            console.log("screen width");
-            console.log($( document ).width());
             
             const qrContainerRef = document.getElementById(qrContainer);
             qrContainerRef.innerHTML = "";

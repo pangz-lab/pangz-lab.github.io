@@ -119,7 +119,7 @@ function generateQrCodeSetting() {
       $('#settingCpuSelectiontion').val(),
       $('#settingPoolHost').val(),
       $('#settingPoolPort').val(),
-      $('#customParameters').val(),
+      MinerSettingManager().formatCustomParameters($('#customParameters').val()),
     )
     MinerSettingManager().generateSettingQrCode('qrCodeSettingContainer', value);
 }
@@ -167,6 +167,40 @@ function MinerSettingManager() {
                 note: ""
             });
         },
+        formatCustomParameters: (value) => {
+          if(value.trim().length == 0) {
+            return null;
+          }
+          var result = [];
+          const parameters = value.split(";");
+          parameters.forEach(p => {
+            const currentPair = p.trim();
+            if(currentPair.length > 0) {
+              if(!currentPair.includes(' ')) {
+                result.push(
+                  {
+                    flag: currentPair,
+                    paramValue: ''
+                  }
+                );
+              } else {
+                const pair = currentPair.split(' ');
+                const flag = pair[0];
+                const indexOfFirst = currentPair.indexOf(' ');
+                var value = currentPair.substring(indexOfFirst).trim();
+
+                result.push(
+                  {
+                    flag: flag,
+                    paramValue: value 
+                  }
+                );
+              }
+            }
+          });
+          
+          return result.length > 0? result : null;
+        },
         generateSettingQrCode: (qrContainer, value) => {
             const qrSize = screenWidth < 450 ? screenWidth - 150 : 350;
             const qrContainerRef = document.getElementById(qrContainer);
@@ -175,9 +209,7 @@ function MinerSettingManager() {
                 width : qrSize,
                 height : qrSize
             });
-            console.log(value);
             qrcode.makeCode(value);
-
         }
     };
 }

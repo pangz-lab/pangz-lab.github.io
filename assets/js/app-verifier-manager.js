@@ -12,17 +12,25 @@ function AppVerifierManager() {
     const sessionKey = "verusMinerAppReleaseSummary";
     const appReleaseJson = "https://raw.githubusercontent.com/pangz-lab/verus_miner-release/main/app-release.json";
     const repoBaseUrl = "https://github.com/pangz-lab/verus_miner-release/tree/main/";
+    const apkDlBaseUrl = "https://github.com/pangz-lab/verus_miner-release/raw/main/";
+    // v3.1.0/app.apk
+    const getSavedReleaseData = () => {
+        return JSON.parse(sessionStorage.getItem(sessionKey));
+    }
 
     return {
         getReleases: () => {
             return $.getJSON(appReleaseJson);
         },
+        getLatestReleaseUrl: () => {
+            var releases = getSavedReleaseData();
+            const latestRelease = releases.length - 1;
+            return apkDlBaseUrl+releases[latestRelease].name+'/app.apk';
+        },
         saveReleaseData:(data) => {
             sessionStorage.setItem(sessionKey, JSON.stringify(data));
         },
-        getReleaseData:() => {
-            return JSON.parse(sessionStorage.getItem(sessionKey));
-        },
+        getReleaseData: getSavedReleaseData,
         generateDropdownList: (parentElement, releaseData) => {
             var items = "";
             var index = 0;

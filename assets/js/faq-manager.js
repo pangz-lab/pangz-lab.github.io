@@ -1,9 +1,10 @@
+const baseUrl = "https://pangz-lab.github.io/";
 const officialDiscordGroup = "https://discord.gg/CRVaEsmp";
 const officialVerusCoinsDiscordGroup = "https://discord.gg/veruscoin";
 const verusWalletAppLink = "https://verus.io/wallet";
 const officialVerusExchanges = "https://verus.io/exchanges";
 const appImages = {
-    minerBaseScreen:"http://localhost:1010/assets/img/verusminer/gallery/gallery-4.jpg"
+    minerBaseScreen: baseUrl + "assets/img/verusminer/gallery/gallery-4.jpg"
 };
 const faqTemplate = `<li data-aos="fade-up" id="faq-PH_ACCORDION_INDEX">
 <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-PH_ACCORDION_INDEX" class="collapsed">PH_FAQ_Q<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>

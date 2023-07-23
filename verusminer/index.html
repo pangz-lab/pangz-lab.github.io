@@ -527,6 +527,7 @@
         <div class="section-title">
 
           <h2>Frequently Asked Questions</h2>
+            
           <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
         </div>
 
@@ -712,10 +713,12 @@
   <script>
     const screenWidth = $(document).width();
     let jsonData = AppVerifierManager().getReleases();
+    var latestVersion = '';
     jsonData.then(function(json) {
       AppVerifierManager().saveReleaseData(json);
       AppVerifierManager().generateDropdownList('#qrDdContainer', json);
       updateAppChecksumQR(json.length - 1);
+      latestVersion = json[json.length - 1].name;
     })
     .fail(function() {
       console.log("error");
@@ -734,7 +737,7 @@
     FaqManager().initList($('#faqListContainer'));
 
     function downloadLatestApk() {
-      window.open(AppVerifierManager().getLatestReleaseUrl(), '_blank');
+      window.open(AppVerifierManager().getLatestReleaseUrl(latestVersion), '_blank');
     }
   </script>
 

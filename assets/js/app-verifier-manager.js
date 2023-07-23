@@ -22,10 +22,8 @@ function AppVerifierManager() {
         getReleases: () => {
             return $.getJSON(appReleaseJson);
         },
-        getLatestReleaseUrl: () => {
-            var releases = getSavedReleaseData();
-            const latestRelease = releases.length - 1;
-            return apkDlBaseUrl+releases[latestRelease].name+'/app.apk';
+        getLatestReleaseUrl: (version) => {
+            return apkDlBaseUrl+version+'/app.apk';
         },
         saveReleaseData:(data) => {
             sessionStorage.setItem(sessionKey, JSON.stringify(data));

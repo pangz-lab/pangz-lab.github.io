@@ -1,9 +1,9 @@
 function updateAppChecksumQR(index) {
     const releaseData = AppVerifierManager().getReleaseData();
     AppVerifierManager().showReleaseQrDetails(
-      "qr-container",
-      "#qr-dd-version",
-      "#qr-dd-checksum",
+      "appVerifierContainer",
+      "#appVerifierVersionSelection",
+      "#appVerifierChecksumValue",
       releaseData[index]
     );
 }

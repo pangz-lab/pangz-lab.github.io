@@ -7,7 +7,7 @@
 
   <title>VerusMiner</title>
   <meta content="Mine using your phones" name="description">
-  <meta content="verus.verusminer,mining,phone mining,easy phone mining,quick mining,passive income,business for noobs,noob mining,verus mining,verus coin mining" name="keywords">
+  <meta content="verus.verusminer,mining,phone mining,verusminer setting qr, qr setting verus miner,easy phone mining,quick mining,passive income,business for noobs,noob mining,verus mining,verus coin mining" name="keywords">
 
   <!-- Favicons -->
   <link href="favicon.ico" rel="icon">
@@ -286,7 +286,7 @@
                                 </div>
                                 <div class="card-body">
                                   <div class="d-flex justify-content-center align-items-center">
-                                    <p id="qr-container">Loading ...</p>
+                                    <p id="appVerifierContainer">Loading ...</p>
                                   </div>
                                 </div>
                                 <div class="card-footer">
@@ -298,8 +298,8 @@
                                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="qrDdContainer"></ul>
                                     </div>
                                   </div>
-                                  <p><b>Version</b>: <i id="qr-dd-version"> - </i></p>
-                                  <p><b>Checksum</b>: <p id="qr-dd-checksum"> - </p></p>
+                                  <p><b>Version</b>: <i id="appVerifierVersionSelection"> - </i></p>
+                                  <p><b>Checksum</b>: <p id="appVerifierChecksumValue"> - </p></p>
                                 </div>
                               </div>
                             </div>
@@ -460,8 +460,8 @@
                                   <div>
                                     <button class="btn btn-primary btn-lg" type="button" id="qrCodeSettingButton" aria-expanded="false" onclick="generateQrCodeSetting()">Generate Setting</button>
                                   </div>
-                                  <!-- <p><b>Version</b>: <i id="qr-dd-version"> - </i></p>
-                                  <p><b>Checksum</b>: <p id="qr-dd-checksum"> - </p></p> -->
+                                  <!-- <p><b>Version</b>: <i id="appVerifierVersionSelection"> - </i></p>
+                                  <p><b>Checksum</b>: <p id="appVerifierChecksumValue"> - </p></p> -->
                                 </div>
                               </div>
                               <br>
@@ -764,57 +764,11 @@
         <div class="section-title">
 
           <h2>Frequently Asked Questions</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
         </div>
 
         <div class="accordion-list">
-          <ul>
-            <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                <p>
-                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                <p>
-                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
-                </p>
-              </div>
-            </li>
-
-          </ul>
+          <ul id ='faqListContainer'></ul>
         </div>
 
       </div>
@@ -826,40 +780,40 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Join our official discord group to get the latest updates, support or answers about any issues or concerns related to the mining app. You can also send an email.<br>See the following details.</p>
+          <p>Join our official discord group to get the latest updates, support and answers for any issues and concerns related to the mining app. You can also send an email.<br>See the following details.</p>
         </div>
 
         <div class="row">
 
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div class="row">
-              <div class="col-lg-6 info">
+              <div class="col-lg-4 info">
                 <i class="bx bi-discord"></i>
                 <h4>Discord</h4>
                 <p>
                   Join the chat!<br>
-                  <a href="https://discord.gg/CRVaEsmp">https://discord.gg/CRVaEsmp</a>
+                  <a href="https://discord.gg/CRVaEsmp" target="_blank">https://discord.gg/CRVaEsmp</a>
                 </p>
               </div>
-              <!-- <div class="col-lg-6 info">
-                <i class="bx bx-phone"></i>
-                <h4>Call Us</h4>
-                <p>+1 5589 55488 55<br>+1 5589 22548 64</p>
-              </div> -->
-              <div class="col-lg-6 info">
+
+              <div class="col-lg-4 info">
+                <i class="bx bxl-twitter"></i>
+                <h4>Twitter</h4>
+                <p>
+                  Send a DM!<br>
+                  <a href="https://twitter.com/Pangz55192569" target="_blank">https://twitter.com/Pangz55192569</a>
+                </p>
+              </div>
+
+              <div class="col-lg-4 info">
                 <i class="bx bx-envelope"></i>
                 <h4>Email</h4>
                 <p>verusminer.app@gmail.com<br>pangz.lab@gmail.com</p>
               </div>
-              <!-- <div class="col-lg-6 info">
-                <i class="bx bx-time-five"></i>
-                <h4>Working Hours</h4>
-                <p>Mon - Fri: 9AM to 5PM<br>Sunday: 9AM to 1PM</p>
-              </div> -->
             </div>
           </div>
 
-          <div class="col-lg-6">
+          <!-- <div class="col-lg-6">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-up">
               <div class="form-group">
                 <input placeholder="Your Name" type="text" name="name" class="form-control" id="name" required>
@@ -880,7 +834,7 @@
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
-          </div>
+          </div> -->
 
         </div>
 
@@ -892,7 +846,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-newsletter">
+    <!-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -904,7 +858,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="footer-top">
       <div class="container">
@@ -945,13 +899,14 @@
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <p>Please join, like, subscribe and follow!</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://twitter.com/Pangz55192569" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.youtube.com/@pangzlab/featured" class="youtube" target="_blank"><i class="bx bxl-youtube"></i></a>
+              <a href="https://discord.gg/CRVaEsmp" class="discord" target="_blank"><i class="bx bi-discord"></i></a>
+              <!-- <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
               <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
             </div>
           </div>
 
@@ -974,7 +929,7 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <input type="hidden" id="qr-code-value" value="4f29d86fe2dca6524772ff6fda8c07303a019635">
+  <!-- <input type="hidden" id="qr-code-value" value="4f29d86fe2dca6524772ff6fda8c07303a019635"> -->
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/aos/aos.js"></script>
@@ -987,6 +942,7 @@
   <script type="text/javascript" src="../assets/vendor/qrcodejs/qrcode.min.js"></script>
   <script type="text/javascript" src="../assets/js/app-verifier-manager.js"></script>
   <script type="text/javascript" src="../assets/js/miner-setting-manager.js"></script>
+  <script type="text/javascript" src="../assets/js/faq-manager.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
@@ -1010,6 +966,9 @@
       $('#settingPoolPort')
     );
     generateQrCodeSetting();
+
+    //Init FAQ
+    FaqManager().initList($('#faqListContainer'));
   </script>
 
 </body>

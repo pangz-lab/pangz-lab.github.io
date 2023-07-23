@@ -82,8 +82,9 @@ const faqs = [
             By default, the app only supports I and R Verus wallet addresses.<br>
             If you want to use a non-verus wallet address, just <b>leave the default wallet address</b> then use the <b>CUSTOM PARAMETERS</b> field to specify like the following.
             <br><br>
-            <b><i>-u non-verus-wallet-address;</i></b>
-            `,
+            <div class="alert alert-light" role="alert">
+                <i>-u non-verus-wallet-address;</i>
+            </div>`,
     },
     {
         q: `My phone says, this mining app has a virus. Is this app legit?`,
@@ -134,7 +135,7 @@ const faqs = [
     },
     {
         q: `Where can I find the mining poool website?`,
-        a: `You can see it from the app in the <b>MINING WEBSITE</b> section. Click to visit the page.<br>
+        a: `You can see it from the app in the <b>MINING WEBSITE</b> section. Click it to visit the page.<br>
         <br>
         <center><img src="${appImages.minerBaseScreen}" alt="Miner base screen" style="width:350px;height:800px;"></center>`
     },

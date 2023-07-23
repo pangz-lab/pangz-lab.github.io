@@ -114,11 +114,12 @@ const miningPools = [{
 function generateQrCodeSetting() {
     const value = MinerSettingManager().createJsonSetting(
       $('#settingName').val(),
-      $('#minerName').val(),
-      $('#walletAddress').val(),
-      $('#cpuSelectiontion').val(),
-      $('#poolHost').val(),
-      $('#poolPort').val(),
+      $('#settingMinerName').val(),
+      $('#settingWalletAddress').val(),
+      $('#settingCpuSelectiontion').val(),
+      $('#settingPoolHost').val(),
+      $('#settingPoolPort').val(),
+      $('#customParameters').val(),
     )
     MinerSettingManager().generateSettingQrCode('qrCodeSettingContainer', value);
 }
@@ -139,10 +140,10 @@ function MinerSettingManager() {
                 parentId.append(new Option(text, text));
             });
         },
-        createJsonSetting: (name, minerName, walletAddress, cpu, hostServer, hostPort) => {
+        createJsonSetting: (name, minerName, walletAddress, cpu, hostServer, hostPort, customParameter) => {
             return JSON.stringify({
                 id:"1d01d28c796a",
-                name:name + " [SCANNED]",
+                name: name,
                 version: "v2",
                 groupId: 0,
                 minerName: minerName,
@@ -161,7 +162,7 @@ function MinerSettingManager() {
                 enableChargeControl: false,
                 chargeThreshold: parseFloat(10.01),
                 cooldownTimeAfterChargeReached: parseFloat(10.01),
-                extraParameters: null,
+                extraParameters: customParameter,
                 active: false,
                 note: ""
             });
@@ -174,6 +175,7 @@ function MinerSettingManager() {
                 width : qrSize,
                 height : qrSize
             });
+            console.log(value);
             qrcode.makeCode(value);
 
         }

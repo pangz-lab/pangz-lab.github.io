@@ -199,7 +199,7 @@
           <ul>
             <li data-aos="fade-up">
               
-              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">
+              <a data-bs-toggle="collapse" class="collapse collapsed" data-bs-target="#accordion-list-1" aria-expanded="true">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">1. Download VerusMiner</p>
                 <i class="bx bx-chevron-up icon-close"></i>
@@ -223,7 +223,7 @@
               </div>
             </li>
             <li data-aos="fade-up">
-              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-2">
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-2" aria-expanded="false">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">2. Download VerusBox</p>
                 <i class="bx bx-chevron-up icon-close"></i>
@@ -250,7 +250,7 @@
               </div>
             </li>
             <li data-aos="fade-up">
-              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-3">
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-3" aria-expanded="false">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">3. Verify Download</p>
                 <i class="bx bx-chevron-up icon-close"></i>
@@ -315,7 +315,7 @@
               </div>
             </li>
             <li data-aos="fade-up">
-              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-4">
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-4" aria-expanded="false">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">4. Install App</p>
                 <i class="bx bx-chevron-up icon-close"></i>
@@ -340,7 +340,7 @@
               </div>
             </li>
             <li data-aos="fade-up">
-              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-5">
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-5" aria-expanded="false">
                 <i class="bx bx-chevron-down icon-show"></i>
                 <p class="h2">5. Configure Miner</p>
                 <i class="bx bx-chevron-up icon-close"></i>
@@ -369,28 +369,32 @@
                                   <input type="text" class="form-control" id="settingName" aria-describedby="basic-addon3" value="WEB_SETTING">
                                 </div>
                                 <hr/>
+
+                                <!-- Miner Name -->
                                 <label for="basic-url" class="form-label">
                                   <b>MINER NAME</b>
                                   <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="This name will appear to the mining pool website. Avoid adding spaces and other special characters."></i>
                                 </label>
                                 <div class="input-group mb-3">
-                                  <!-- <span class="input-group-text" id="basic-addon3">https://example.com/users/</span> -->
-                                  <input type="text" class="form-control" id="minerName" aria-describedby="basic-addon3" value="VERUS_MINER">
+                                  <input type="text" class="form-control" id="settingMinerName" aria-describedby="basic-addon3" value="VERUS_MINER">
                                 </div>
+
+                                <!-- Wallet Address -->
                                 <label for="basic-url" class="form-label">
                                   <b>WALLET ADDRESS</b>
-                                  <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="This should be your own wallet address(public address) generated using the Verus wallet apps."></i>
+                                  <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Should be your own Verus wallet address(I or R address) generated using the Verus wallet apps."></i>
                                 </label>
                                 <div class="input-group mb-3">
-                                  <!-- <span class="input-group-text" id="basic-addon3">https://example.com/users/</span> -->
-                                  <input type="text" class="form-control" id="walletAddress" aria-describedby="basic-addon3" value="i81XL8ZpuCo9jmWLv5L5ikdxrGuHrrpQLz">
+                                  <input type="text" class="form-control" id="settingWalletAddress" aria-describedby="basic-addon3" value="i81XL8ZpuCo9jmWLv5L5ikdxrGuHrrpQLz">
                                 </div>
+
+                                <!-- CPU -->
                                 <label for="cpu-core_thread" class="form-label">
                                   <b>CPU</b>
                                   <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Number of cores or thread of the device. Ideally setting should be max cpu - 1"></i>
                                 </label>
                                 <div class="input-group mb-3">
-                                  <select class="form-select" aria-label="cpu-core_thread" id="cpuSelectiontion">
+                                  <select class="form-select" aria-label="cpu-core_thread" id="settingCpuSelectiontion">
                                     <option value="1">1 core/thread</option>
                                     <option value="2">2 core/thread</option>
                                     <option value="3">3 core/thread</option>
@@ -402,28 +406,38 @@
                                   </select>
                                 </div>
                                 
+                                <!-- Stratum Server -->
                                 <label for="pool_server" class="form-label">
                                   <b>STRATUM SERVER</b>
                                   <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Mining pool server where the miner will connect to when mining. You can customize the host and the port."></i>
                                 </label>
                                 <div class="input-group mb-3">
-                                  <select class="form-select" aria-label="pool_server" id="poolServerList"></select>
-                                  <div class="input-group">
-                                    <div class="row g-2">
-                                      <div class="col-md-8">
-                                        <div class="input-group">
-                                          <div class="input-group-text">HOST</div>
-                                          <input type="text" class="form-control" id="poolHost" placeholder="pool.verus.io" value="pool.verus.io">
-                                        </div>
+                                  <select class="form-select" aria-label="pool_server" id="settingPoolServerList"></select>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="row g-2">
+                                    <div class="col-md-8">
+                                      <div class="input-group">
+                                        <div class="input-group-text">HOST</div>
+                                        <input type="text" class="form-control" id="settingPoolHost" placeholder="pool.verus.io" value="pool.verus.io">
                                       </div>
-                                      <div class="col-md-4">
-                                        <div class="input-group">
-                                          <div class="input-group-text">PORT</div>
-                                          <input type="number" class="form-control" id="poolPort" placeholder="9998" value="9998">
-                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="input-group">
+                                        <div class="input-group-text">PORT</div>
+                                        <input type="number" class="form-control" id="settingPoolPort" placeholder="9998" value="9998">
                                       </div>
                                     </div>
                                   </div>
+                                </div>
+
+                                <!-- Custom Parameters -->
+                                <label for="custom_parameters" class="form-label">
+                                  <b>CUSTOM PARAMETERS</b>
+                                  <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="The value vary depending on your needs. You can use this to setup non-verus wallet address or miner configuration as required by the pool."></i>
+                                </label>
+                                <div class="input-group mb-3">
+                                  <textarea class="form-control" aria-label="custom_parameters" id="customParameters" rows="3"></textarea>
                                 </div>
                               </div>
                               
@@ -991,9 +1005,9 @@
 
     //Init pool selection
     MinerSettingManager().initSelection(
-      $('#poolServerList'),
-      $('#poolHost'),
-      $('#poolPort')
+      $('#settingPoolServerList'),
+      $('#settingPoolHost'),
+      $('#settingPoolPort')
     );
     generateQrCodeSetting();
   </script>

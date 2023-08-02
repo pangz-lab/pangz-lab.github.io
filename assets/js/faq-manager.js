@@ -7,7 +7,7 @@ const appImages = {
     minerBaseScreen: baseUrl + "assets/img/verusminer/gallery/gallery-4.jpg"
 };
 const faqTemplate = `<li data-aos="fade-up" id="faq-PH_ACCORDION_INDEX">
-<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-PH_ACCORDION_INDEX" class="collapsed">PH_FAQ_Q<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-PH_ACCORDION_INDEX" class="collapsed">PH_ITEM_NUM PH_FAQ_Q<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
 <div id="accordion-list-PH_ACCORDION_INDEX" class="collapse" data-bs-parent=".accordion-list">
     PH_FAQ_A
 </div>
@@ -144,37 +144,42 @@ const faqs = [
         q: `I've been mining for 24 hours now but I don't get paid. Is this is scam?`,
         a: `No. This is not a scam.
         <br><br>
-        First, I suggest to do your own research(DYOR).<br>
+        First, I suggest to do your own research (DYOR).<br>
         Second, understand how the mining app works before coming up to that conclusion.
+        <br><br>
+        Mining pools have their own <b>payment amount threshold</b> and a <b>payment schedule</b>. Some pay once a day. Some pay 4x a day like the <b>verus pool</b> (https://pool.verus.io).
+        <br><br>
+        The <b>payment amount threshold</b> determines <b>how much balance you need to accumulate</b> before the mining pool pays you on the <b>payment schedule</b>.
+        <br><br>
+        Once paid, the balance will go to the <b>paid balance</b> and will eventually reflect to your wallet address. You can also see the paid balance from the app in the <b>WALLET BALANCE</b> section.
         <br>
         <br>
-        Mining apps are connecting to a mining pool without any special requirements. <b>You don't need to pay anything to start the mining</b>. Just a capable mining device and a valid wallet address.
+        <center><img src="${appImages.minerBaseScreen}" alt="Miner base screen" style="width:350px;height:800px;"></center>
+        <br><br>
+        <b>Additional Knowledge</b>:
+        <br>
+        Mining apps are connecting to a mining pool without any special requirements. <b>You don't need to pay anything beforehand to start</b>. Just a capable mining device and a valid wallet address.
         This category of mining is called <b>pool mining.</b>
         <br><br>
-        Another type of mining which is called <b>solo mining</b> or sometimes called <b>node mining</b> is a mining where not only you need a capable hardware and a wallet address but also 
-        requires you to download the whole blockchain data before you can mine. It's a resource intensive process and a tedious to setup as it requires technical skills.
+        Another type of mining which is called <b>solo mining</b> (or sometimes called <b>node mining</b>) is a mining where not only a capable hardware and a wallet address is needed but also 
+        requires you to download the whole blockchain data before you can mine. It's a resource intensive process and tedious to setup as it requires some technical skills.
         <br><br>
         Both help secure the blockchain network and have it's own advantages and disadvantages.
         <br><br>
         This app is doing a <b>pool mining</b>. The easy one.
         <br><br>
-        Mining app connects to a mining pool. The mining pool sends challenges to the connected miners( your phone and other mining devices ).<br>
-        When a miner found a block - means the miner solved the challenge sent by the pool, it get's the majority of the block reward.<br>
-        It will become an <b>immature balance</b> first then once confirmed, will become a <b>balance</b>.
+        Mining app connects to a mining pool. The mining pool sends challenges to the connected miners (your phone and other mining devices).<br>
+        When a miner found a block - the miner solved the challenge sent by the pool, it get's the majority of the block reward.<br>
         The rest goes to the pool operator and the remaining will be distrubuted to all the miners connected during the time the block was found.
         <br><br>
-        Miners accumulate Verus coins while they are connected to the pool. No coins to receive otherwise.<br>Confirmed balance are not yet transferred to your wallet address</b>.
+        It will be an <b>immature balance</b> first then once confirmed, will become a <b>balance</b>. Once you got the minimum balance on the schedule set by the pool, it will then be transferred to your wallet.
         <br><br>
-        Here is the important part.
+        <div class="alert alert-info" role="alert">
+        immature 🔜 balance 🔜 paid(wallet balance)
+        </div>
         <br><br>
-        Mining pools have their own <b>payment amount threshold</b> and a <b>payment schedule</b>. Some pay once a day. Some pay 4x a day like the <b>verus.io</b>.
-        <br><br>
-        The <b>payment amount threshold</b> determines <b>how much balance you need to accumulate</b> before the mining pool pays you on the recurring <b>payment schedule</b>.
-        <br><br>
-        Once paid, the balance will go to the <b>paid balance</b> and will eventually reflect to your wallet address. You can also see the paid balance from the app in the <b>WALLET BALANCE</b> section.
-        <br>
-        <br>
-        <center><img src="${appImages.minerBaseScreen}" alt="Miner base screen" style="width:350px;height:800px;"></center>`
+        Miners accumulate Verus coins while they are connected to a mining pool. No coin rewards to receive otherwise.<br>Again, confirmed balances are not yet transferred to your wallet address</b>.
+        <br><br>`
     }
 ];
 
@@ -186,11 +191,11 @@ function FaqManager() {
             faqs.forEach(item => {
                 item
                 faqFormattedList += faqTemplate.replaceAll("PH_ACCORDION_INDEX", index)
+                .replaceAll("PH_ITEM_NUM", '[ ' + index + ' ] ')
                 .replaceAll("PH_FAQ_Q", item.q)
                 .replaceAll("PH_FAQ_A", item.a);
                 index++;
             });
-            console.log(faqFormattedList);
             parentContainer.html(faqFormattedList);
         }
     }    

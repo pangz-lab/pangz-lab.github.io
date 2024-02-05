@@ -806,10 +806,11 @@
     let jsonData = AppVerifierManager().getReleases();
     var latestVersion = '';
     jsonData.then(function (json) {
+      json = json.reverse();
       AppVerifierManager().saveReleaseData(json);
       AppVerifierManager().generateDropdownList('#qrDdContainer', json);
-      updateAppChecksumQR(json.length - 1);
-      latestVersion = json[json.length - 1].name;
+      updateAppChecksumQR(0);
+      latestVersion = json[0].name;
     }).fail(function () {
         console.log("error");
         alert("Error retrieving data. Try to refresh the page. If error persist, inform the developer using the contacts below. Preferrably use discord.")

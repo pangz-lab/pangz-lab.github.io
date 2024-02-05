@@ -180,6 +180,11 @@ h6 {
   color: #fff;
 }
 
+.dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
 .navbar .dropdown ul {
   display: block;
   position: absolute;

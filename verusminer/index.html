@@ -252,12 +252,19 @@
                 <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                <small class="text-muted">This is the mining application.</small>
+                <small class="text-muted">This is the mining application. It uses the <b>generic</b> version which works well for every phone models.</small>
                 <p>
                 <div class="d-grid">
                   <button class="btn btn-md btn-success" type="button" onclick="downloadLatestApk()">
                     <i class="bx bxl-android"></i> APK Download
                   </button>
+                  <br>
+                  
+                  <small class="text-muted">Other builds can also be used specific to your CPU architecture. Using a specific build can boost your hashrate.</small>
+                  <br>
+                  <div class="d-grid gap-2 d-md-block" id="versionLinkContainer"></div>
+                  
+                  <br>
                   <br>
                   <div class="alert alert-warning d-flex align-items-center" role="alert">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
@@ -794,6 +801,7 @@
   <script type="text/javascript" src="../assets/vendor/qrcodejs/qrcode.min.js"></script>
   <script type="text/javascript" src="../assets/vendor/countup2/countup2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+  <script type="text/javascript" src="../assets/js/statics.js"></script>
   <script type="text/javascript" src="../assets/js/app-verifier-manager.js"></script>
   <script type="text/javascript" src="../assets/js/miner-setting-manager.js"></script>
   <script type="text/javascript" src="../assets/js/faq-manager.js"></script>
@@ -806,10 +814,13 @@
     let jsonData = AppVerifierManager().getReleases();
     var latestVersion = '';
     jsonData.then(function (json) {
+      json = json.reverse();
       AppVerifierManager().saveReleaseData(json);
       AppVerifierManager().generateDropdownList('#qrDdContainer', json);
-      updateAppChecksumQR(json.length - 1);
-      latestVersion = json[json.length - 1].name;
+      AppVerifierManager().generateVersionReleaseButtons('#versionLinkContainer', json);
+      
+      updateAppChecksumQR(0);
+      latestVersion = json[0].name;
     }).fail(function () {
         console.log("error");
         alert("Error retrieving data. Try to refresh the page. If error persist, inform the developer using the contacts below. Preferrably use discord.")

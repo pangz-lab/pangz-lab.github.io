@@ -59,7 +59,7 @@ function AppVerifierManager() {
                     // label = label.split("_")[1];
                     const arch = e.arch;
                     const urlTip = e.version;
-                    items += `<button class="btn btn-link btn-sm" type="button" onclick="openApkVersionUrl('${urlTip}')" data-bs-toggle="tooltip" data-bs-placement="top" title="${cpuArchs[arch]}">${label}</button>`
+                    items += `<button class="btn btn-link btn-sm" type="button" onclick="openApkVersionUrl('${urlTip}')" data-bs-toggle="tooltip" data-bs-placement="top" title="${cpuArchs[arch]}"> 📥${label}</button>`
                 }
             });
             $(parentElement).html(items);

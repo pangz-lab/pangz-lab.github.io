@@ -9,7 +9,7 @@ function updateAppChecksumQR(index) {
 }
 
 function openApkVersionUrl(version) {
-    window.open(apkDlBaseUrl + '/' + version + '/app.apk' , '_blank');
+    window.open(apkDlBaseUrl + version + '/app.apk' , '_blank');
 }
 
 function AppVerifierManager() {

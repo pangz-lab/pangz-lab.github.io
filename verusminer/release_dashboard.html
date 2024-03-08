@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+
+<body>
+    <div>
+        <canvas id="downloadsChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="../assets/vendor/qrcodejs/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/misc-services.js"></script>
+    <script>
+        let jsonData = AssetManager().getReleases();
+        var latestVersion = '';
+        jsonData.then(function (object) {
+            var labels = [];
+            var data = [];
+            object.forEach(release => {
+                release.assets.forEach(e => {
+                    console.log(e);
+                    labels.push(e.name);
+                    data.push(e.download_count);
+                });
+            });
+
+            createChart(labels, data);
+        });
+
+        function createChart(labels, data) {
+            const ctx = document.getElementById('downloadsChart');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Download Count',
+                        data: data,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    backgroundColor: function() {
+                        var c = [];
+                        labels.forEach(e => {
+                            c.push(
+                                e.includes('all') ?  
+                                'rgb(54, 162, 235)':
+                                'rgb(255, 99, 132)');
+                        });
+
+                        return c;
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

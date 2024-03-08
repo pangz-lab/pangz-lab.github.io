@@ -110,6 +110,8 @@
           <li><a class="nav-link scrollto" href="#downloads">Downloads</a></li>
           <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#faq">F.A.Q</a></li>
+          <li><a class="nav-link scrollto" href="https://verusmonitor.is-now.live/" target="_blank">Monitoring</a></li>
+          <li><a class="nav-link scrollto" href="/verusminer/release_dashboard.html" target="_blank">Charts</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="#downloads">Get Started</a></li>
         </ul>
@@ -252,7 +254,7 @@
                 <i class="bx bx-chevron-up icon-close"></i>
               </a>
               <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                <small class="text-muted">This is the mining application. It uses the <b>generic</b> version which works well for every phone models.</small>
+                <small class="text-muted">This is the mining application. The link provides the <b>generic</b> version by default which works well for every phone models.</small>
                 <p>
                 <div class="d-grid">
                   <button class="btn btn-md btn-success" type="button" onclick="downloadLatestApk()">
@@ -822,9 +824,9 @@
       updateAppChecksumQR(0);
       latestVersion = json[0].name;
     }).fail(function () {
-        console.log("error");
-        alert("Error retrieving data. Try to refresh the page. If error persist, inform the developer using the contacts below. Preferrably use discord.")
-      })
+      console.log("error");
+      alert("Error retrieving data. Try to refresh the page. If error persist, inform the developer using the contacts below. Preferrably use discord.")
+    })
 
     //Init pool selection
     MinerSettingManager().initSelection(

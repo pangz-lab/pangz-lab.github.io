@@ -5,19 +5,16 @@
     <title>Redirecting...</title>
 </head>
 <body>
-    <p id="tmp">Redirecting...</p>
+    <p id="tmp">Redirecting to ...</p>
     <script>
         
         function redirect() {
             // Get the query parameters from the current URL
+            const label = document.getElementById('tmp');
             const params = new URLSearchParams(window.location.search);
-
-            // Extract the 'ks' parameter
-            const ksValue = params.get('ks') || '';
-
-            // Define the target base URL
+            const ksValue = params.get('s') || '';
             if(paths[ksValue] === undefined) {
-                document.getElementById('tmp').innerHTML = 'Unknown URL!'
+                label.innerHTML = 'Unknown URL!'
                 return;
             }
             const targetUrl = paths[ksValue];
@@ -25,14 +22,15 @@
 
             // Combine the target URL with query parameters
             const redirectUrl = targetUrl + queryParams;
-
-            // Perform the redirect
+            label.innerHTML = `Redirecting to ${redirectUrl} ...`;
             window.location.href = redirectUrl;
         }
 
-        // https://pangz-lab.github.io/lin/?ks=verusbox.discord
+        // https://pangz-lab.github.io/link?s=verusbox.discord
         const paths = {
-            "verusbox.discord":"https://discord.gg/QFrCGnvh"
+            "verusbox.discord":"https://discord.gg/QFrCGnvh",
+            "verusminer.official":"https://pangz-lab.github.io/verusminer/",
+            "verusmonitor.web":"https://verusmonitor.is-now.live/"
         };
 
         redirect();

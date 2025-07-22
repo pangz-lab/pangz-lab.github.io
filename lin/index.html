@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p id="tmp">Redirecting...</p>
+    <script>
+        const paths = {
+            "verusbox.discord":"https://discord.gg/QFrCGnvh"
+        };
+
+        // Get the query parameters from the current URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Extract the 'ks' parameter
+        const ksValue = params.get('ks') || '';
+
+        // Define the target base URL
+        if(paths[ksValue] === undefined) {
+            document.getElementById('tmp').innerHTML = 'Unknown URL!'
+            return;
+        }
+        const targetUrl = paths[ksValue];
+
+        // Construct the redirect URL with the 'ks' parameter
+        // const redirectUrl = ksValue ? `${targetUrl}?ks=${encodeURIComponent(ksValue)}` : targetUrl;
+        // Get the current URL's query parameters
+        const queryParams = window.location.search;
+
+        // Combine the target URL with query parameters
+        const redirectUrl = targetUrl + queryParams;
+
+        // Perform the redirect
+        window.location.href = redirectUrl;
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "verusminer.official":"https://pangz-lab.github.io/verusminer/",
+
+    "verusbox.discord":"https://discord.gg/QFrCGnvh",
+    "verusbox.official":"https://pangz-lab.github.io/verusbox/",
+
+    "verusmonitor.web":"https://verusmonitor.is-now.live/",
+
+    "ngct.playground": "https://pangz-lab.github.io/playground/ng-cloudflare-turnstile/",
+    "ngct.npm": "https://www.npmjs.com/package/@pangz/ng-cloudflare-turnstile",
+    "ngct.yarn": "https://yarnpkg.com/package?q=pangz&name=%40pangz%2Fng-cloudflare-turnstile",
+    
+    "pangz.sns.x": "https://x.com/PangzLab"
+}

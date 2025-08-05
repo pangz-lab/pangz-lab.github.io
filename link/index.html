@@ -8,7 +8,7 @@
     <p id="tmp">Redirecting to ...</p>
     <script>
         
-        function redirect() {
+        function redirect(paths) {
             // Get the query parameters from the current URL
             const label = document.getElementById('tmp');
             const params = new URLSearchParams(window.location.search);
@@ -26,21 +26,12 @@
             window.location.href = redirectUrl;
         }
 
+        function getLinks() {
+            return JSON.parse(fs.readFileSync('links.json', 'utf8'));
+        }
+
         // https://pangz-lab.github.io/link?s=verusbox.discord
-        const paths = {
-            "verusminer.official":"https://pangz-lab.github.io/verusminer/",
-
-            "verusbox.discord":"https://discord.gg/QFrCGnvh",
-            "verusbox.official":"https://pangz-lab.github.io/verusbox/",
-
-            "verusmonitor.web":"https://verusmonitor.is-now.live/",
-
-            "ngct.playground": "https://pangz-lab.github.io/playground/ng-cloudflare-turnstile/",
-            "ngct.npm": "https://www.npmjs.com/package/@pangz/ng-cloudflare-turnstile",
-            "ngct.yarn": "https://yarnpkg.com/package?q=pangz&name=%40pangz%2Fng-cloudflare-turnstile",
-        };
-
-        redirect();
+        redirect(getLinks());
     </script>
 </body>
 </html>

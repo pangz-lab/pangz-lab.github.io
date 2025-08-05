@@ -27,7 +27,6 @@
         }
 
         async function getLinks() {
-            return JSON.parse(fs.readFileSync('links.json', 'utf8'));
             try {
                 const response = await fetch('links.json');
                 if (!response.ok) {
@@ -41,7 +40,7 @@
         }
 
         // https://pangz-lab.github.io/link?s=verusbox.discord
-        redirect(await getLinks());
+        getLinks().then((p) => redirect(p));
     </script>
 </body>
 </html>

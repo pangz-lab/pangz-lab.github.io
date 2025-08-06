@@ -1,7 +1,7 @@
 {
     "verusminer.official":"https://pangz-lab.github.io/verusminer/",
 
-    "verusbox.discord":"https://discord.gg/QFrCGnvh",
+    "verusbox.discord":"https://discord.com/invite/KvtBw3UemH",
     "verusbox.official":"https://pangz-lab.github.io/verusbox/",
 
     "verusmonitor.web":"https://verusmonitor.is-now.live/",
@@ -10,5 +10,6 @@
     "ngct.npm": "https://www.npmjs.com/package/@pangz/ng-cloudflare-turnstile",
     "ngct.yarn": "https://yarnpkg.com/package?q=pangz&name=%40pangz%2Fng-cloudflare-turnstile",
     
-    "pangz.sns.x": "https://x.com/PangzLab"
+    "pangz.sns.x": "https://x.com/PangzLab",
+    "pangz.sns.yt": "https://www.youtube.com/@pangzlab/featured"
 }

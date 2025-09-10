@@ -9,7 +9,10 @@
     "ngct.playground": "https://pangz-lab.github.io/playground/ng-cloudflare-turnstile/",
     "ngct.npm": "https://www.npmjs.com/package/@pangz/ng-cloudflare-turnstile",
     "ngct.yarn": "https://yarnpkg.com/package?q=pangz&name=%40pangz%2Fng-cloudflare-turnstile",
+
+    "client.cg.dart": "https://pub.dev/packages/coingecko_client",
+    "client.verus.zmq": "https://www.npmjs.com/package/verus-zmq-client",
     
     "pangz.sns.x": "https://x.com/PangzLab",
-    "pangz.sns.yt": "https://www.youtube.com/@pangzlab/featured"
+    "pangz.sns.yt": "https://www.youtube.com/@pangzlab/featured",
 }

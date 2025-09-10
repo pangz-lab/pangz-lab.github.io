@@ -6,6 +6,8 @@
     "verusbox.official":"https://github.com/pangz-lab/verus_box-release",
 
     "verusmonitor.web":"https://verusmonitor.is-now.live/",
+    
+    "verusd.web.npm":"https://www.npmjs.com/package/verusd-web",
 
     "ngct.playground": "https://pangz-lab.github.io/playground/ng-cloudflare-turnstile/",
     "ngct.npm": "https://www.npmjs.com/package/@pangz/ng-cloudflare-turnstile",

@@ -156,47 +156,54 @@
 
   /**
    * Gallery Slider
+   * Skip empty .gallery-slider (e.g. VerusMiner page loads slides async and
+   * initializes Swiper after images are injected). Static galleries with
+   * pre-rendered slides still init here.
    */
-  new Swiper('.gallery-slider', {
-    speed: 400,
-    loop: true,
-    centeredSlides: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 30
+  if (document.querySelector('.gallery-slider .swiper-slide')) {
+    new Swiper('.gallery-slider', {
+      speed: 400,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
       },
-      640: {
-        slidesPerView: 3,
-        spaceBetween: 30
+      slidesPerView: 'auto',
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
       },
-      992: {
-        slidesPerView: 5,
-        spaceBetween: 30
-      },
-      1200: {
-        slidesPerView: 7,
-        spaceBetween: 30
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 30
+        },
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        },
+        992: {
+          slidesPerView: 5,
+          spaceBetween: 30
+        },
+        1200: {
+          slidesPerView: 7,
+          spaceBetween: 30
+        }
       }
-    }
-  });
+    });
+  }
 
   /**
-   * Initiate gallery lightbox 
+   * Initiate gallery lightbox (re-init on pages that inject slides later)
    */
-  const galleryLightbox = GLightbox({
-    selector: '.gallery-lightbox'
-  });
+  if (document.querySelector('.gallery-lightbox')) {
+    GLightbox({
+      selector: '.gallery-lightbox'
+    });
+  }
 
   /**
    * Testimonials slider

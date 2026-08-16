@@ -123,8 +123,10 @@
           <li><a class="nav-link scrollto" href="#faq">F.A.Q</a></li>
           <!-- <li><a class="nav-link scrollto" href="https://my-verusminers.pangz.space/" target="_blank">Monitoring(MyVerusMiners)</a></li> -->
           <li>
-            <a class="nav-link scrollto" href="https://my-verusminers.pangz.space/" target="_blank">
-              MyVerusMiners(Monitoring)
+            <a class="nav-link scrollto nav-mvm" href="https://my-verusminers.pangz.space/" target="_blank" rel="noopener">
+              <img src="../assets/img/verusminer/myverusminer-icon-mini.png" alt="" class="nav-mvm-icon" width="22" height="22">
+              MyVerusMiners
+              <span class="nav-mvm-sub">(Monitoring)</span>
             </a>
           </li>
           <li><a class="nav-link scrollto" href="/verusminer/release_dashboard.html" target="_blank">Charts</a></li>
@@ -605,12 +607,13 @@
 
       </div>
 
-      <div class="container-fluid" data-aos="fade-up">
+      <div class="container-fluid gallery-slider-wrap" data-aos="fade-up">
         <div class="gallery-slider swiper">
           <div class="swiper-wrapper" id="main-gallery"></div>
+          <div class="swiper-button-prev" aria-label="Previous screenshot"></div>
+          <div class="swiper-button-next" aria-label="Next screenshot"></div>
           <div class="swiper-pagination"></div>
         </div>
-
       </div>
     </section><!-- End Gallery Section -->
 
@@ -823,32 +826,18 @@
 
     setDownloadCount('#counteUpContainer', () => { runDownloadCountup() });
 
-    // Call this after the DOM is ready
-    loadGalleryImages(
-      // '.gallery-slider .swiper-wrapper',
-      '#main-gallery',
-      '../assets/img/verusminer/gallery'
-    ).then(() => {
-      // Re-initialize Swiper after the slides are added
-      // (adjust according to how you currently init Swiper)
-        const middleIndex = Math.floor(slides.length / 2);
-        const swiper = new Swiper('.gallery-slider', {
-          slidesPerView: 'auto',
-          spaceBetween: 30,
-          centeredSlides: true,
-          initialSlide: middleIndex,
-          grabCursor: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-        });
+    // Dynamic gallery: load images, then init Swiper on the MAIN large image
+    let gallerySwiper = null;
+    let galleryLightbox = null;
 
-        // Force Swiper to recalculate after images are in the DOM
-        setTimeout(() => {
-          swiper.update();
-        }, 100);
-    });
+    loadGalleryImages('#main-gallery', '../assets/img/verusminer/gallery')
+      .then((slideCount) => {
+        if (!slideCount) return;
+        initGallerySwiper(slideCount);
+      })
+      .catch((err) => {
+        console.error('Gallery load failed', err);
+      });
 
     function downloadLatestApk() {
       window.open(AppVerifierManager().getLatestReleaseUrl(latestVersion), '_blank');
@@ -861,9 +850,21 @@
       })
     }
 
+    function waitForImages(root) {
+      const imgs = Array.from(root.querySelectorAll('img'));
+      if (!imgs.length) return Promise.resolve();
+      return Promise.all(imgs.map((img) => {
+        if (img.complete && img.naturalWidth) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        });
+      }));
+    }
+
     async function loadGalleryImages(wrapperSelector, basePath) {
       const wrapper = document.querySelector(wrapperSelector);
-      if (!wrapper) return;
+      if (!wrapper) return 0;
 
       const response = await fetch(`${basePath}/images.json`);
       const imageNames = await response.json();
@@ -872,18 +873,211 @@
 
       for (const name of imageNames) {
         const src = `${basePath}/${name}`;
-
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
         slide.innerHTML = `
           <a href="${src}" class="gallery-lightbox" data-gall="gallery-carousel">
-            <img src="${src}" class="img-fluid" alt="">
+            <img src="${src}" alt="VerusMiner screenshot ${name}" loading="lazy" draggable="false">
           </a>
         `;
         wrapper.appendChild(slide);
       }
+
+      await waitForImages(wrapper);
+      return imageNames.length;
+    }
+
+    function initGallerySwiper(slideCount) {
+      const el = document.querySelector('.gallery-slider');
+      if (!el) return;
+
+      if (gallerySwiper) {
+        gallerySwiper.destroy(true, true);
+        gallerySwiper = null;
+      }
+
+      const middleIndex = Math.floor(slideCount / 2);
+
+      // Main image swiper: large centered slide, swipe left/right
+      gallerySwiper = new Swiper(el, {
+        speed: 450,
+        loop: slideCount > 1,
+        centeredSlides: true,
+        initialSlide: middleIndex,
+        grabCursor: true,
+        watchOverflow: true,
+        observer: true,
+        observeParents: true,
+        // One large main image; peek neighbors on wide screens
+        slidesPerView: 1,
+        spaceBetween: 16,
+        breakpoints: {
+          576: {
+            slidesPerView: 1.15,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 1.35,
+            spaceBetween: 24
+          },
+          992: {
+            slidesPerView: 1.55,
+            spaceBetween: 28
+          },
+          1200: {
+            slidesPerView: 1.75,
+            spaceBetween: 32
+          }
+        },
+        navigation: {
+          nextEl: '.gallery-slider .swiper-button-next',
+          prevEl: '.gallery-slider .swiper-button-prev'
+        },
+        pagination: {
+          el: '.gallery-slider .swiper-pagination',
+          clickable: true,
+          dynamicBullets: true
+        },
+        keyboard: {
+          enabled: true
+        },
+        autoplay: {
+          delay: 5500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }
+      });
+
+      // Recalculate after layout/fonts
+      requestAnimationFrame(() => {
+        gallerySwiper.update();
+        gallerySwiper.slideToLoop
+          ? gallerySwiper.slideToLoop(middleIndex % slideCount, 0)
+          : gallerySwiper.slideTo(middleIndex, 0);
+      });
+
+      if (galleryLightbox && typeof galleryLightbox.destroy === 'function') {
+        galleryLightbox.destroy();
+      }
+      galleryLightbox = GLightbox({
+        selector: '.gallery-lightbox',
+        touchNavigation: true,
+        loop: true
+      });
     }
   </script>
+
+  <style>
+    /* MVM header link */
+    .nav-mvm {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-mvm-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .nav-mvm-sub {
+      font-weight: 400;
+      opacity: 0.85;
+      font-size: 0.9em;
+    }
+
+    /* Gallery: large main image + working swipe */
+    #gallery.gallery {
+      overflow: hidden;
+      padding-bottom: 2rem;
+    }
+    .gallery-slider-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 0.5rem 1rem;
+    }
+    .gallery-slider.swiper {
+      width: 100%;
+      padding: 1.25rem 2.75rem 2.75rem;
+      overflow: hidden;
+    }
+    .gallery-slider .swiper-slide {
+      /* Swiper sets width via inline style — never force auto */
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      opacity: 0.55;
+      transform: scale(0.9);
+      box-sizing: border-box;
+    }
+    .gallery-slider .swiper-slide-active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+      border: none !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+      background: transparent !important;
+      text-align: center;
+    }
+    .gallery-slider .swiper-slide a {
+      display: block;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      /* allow horizontal swipe on the image link */
+      touch-action: pan-y;
+      cursor: grab;
+    }
+    .gallery-slider .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(72vh, 720px);
+      object-fit: contain;
+      border-radius: 18px;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      background: #0b1220;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .gallery-slider .swiper-slide-active img {
+      border-color: #4dabf7;
+      box-shadow: 0 0 24px rgba(77, 171, 247, 0.55),
+                  0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+    .gallery-slider .swiper-button-prev,
+    .gallery-slider .swiper-button-next {
+      color: #3165D4;
+      width: 40px;
+      height: 40px;
+    }
+    .gallery-slider .swiper-button-prev:after,
+    .gallery-slider .swiper-button-next:after {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .gallery-slider .swiper-pagination {
+      bottom: 4px;
+    }
+    @media (max-width: 575.98px) {
+      .gallery-slider.swiper {
+        padding: 0.75rem 2.25rem 2.5rem;
+      }
+      .gallery-slider .swiper-slide a {
+        max-width: 300px;
+      }
+      .gallery-slider .swiper-slide img {
+        max-height: min(68vh, 560px);
+      }
+    }
+  </style>
 
 </body>
 

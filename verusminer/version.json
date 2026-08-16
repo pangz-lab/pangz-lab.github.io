@@ -1,0 +1,14 @@
+{
+  "version": "2026.08.16.2",
+  "updated": "2026-08-16",
+  "notes": "gallery reset to basic Appland swiper + images.json; SEO/short links kept",
+  "assets": {
+    "ogImage": "https://pangz-lab.github.io/assets/img/verusminer/og-cover.png",
+    "favicon": "https://pangz-lab.github.io/verusminer/favicon.ico",
+    "galleryManifest": "https://pangz-lab.github.io/assets/img/verusminer/gallery/images.json"
+  },
+  "shortLinks": {
+    "myverusminers": "https://pangz-lab.github.io/link?s=myverusminers.web",
+    "communityX": "https://pangz-lab.github.io/link?s=verusminer.community.x"
+  }
+}

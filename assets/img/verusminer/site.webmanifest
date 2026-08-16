@@ -1,0 +1,23 @@
+{
+  "name": "VerusMiner",
+  "short_name": "VerusMiner",
+  "description": "Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner.",
+  "start_url": "https://pangz-lab.github.io/verusminer/",
+  "display": "standalone",
+  "background_color": "#0B1B3A",
+  "theme_color": "#3165D4",
+  "icons": [
+    {
+      "src": "https://pangz-lab.github.io/assets/img/verusminer/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://pangz-lab.github.io/assets/img/verusminer/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

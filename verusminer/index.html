@@ -14,32 +14,49 @@
     content="Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner." />
   <meta name="keywords"
     content="verus,verusminer,mining,phone mining,verusminer setting qr, qr setting verus miner,easy phone mining,quick mining,passive income,business for noobs,noob mining,verus mining,verus coin mining">
+  <meta name="theme-color" content="#3165D4" />
+  <!-- Site build version (see VERSION / version.json). Bump those files to force cache reset. -->
+  <meta name="verusminer-site-version" content="2026.08.16.2" />
+  <link rel="canonical" href="https://pangz-lab.github.io/verusminer/" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Facebook / Google link previews -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VerusMiner" />
   <meta property="og:url" content="https://pangz-lab.github.io/verusminer/" />
   <meta property="og:title"
     content="VerusMiner — Earn Verus coins, a revolutionary blockchain technology of the future" />
   <meta property="og:description"
     content="Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner." />
-  <meta property="og:image" content="https://pangz-lab.github.io/assets/img/verusminer/main-app.png" />
+  <!-- 1200×630 recommended for rich previews (not a tiny square app icon) -->
+  <meta property="og:image" content="https://pangz-lab.github.io/assets/img/verusminer/og-cover.png" />
+  <meta property="og:image:secure_url" content="https://pangz-lab.github.io/assets/img/verusminer/og-cover.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="VerusMiner mobile mining app" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://pangz-lab.github.io/verusminer/" />
-  <meta property="twitter:title"
+  <!-- X (Twitter) cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://pangz-lab.github.io/verusminer/" />
+  <meta name="twitter:title"
     content="VerusMiner — Earn Verus coins, a revolutionary blockchain technology of the future" />
-  <meta property="twitter:description"
+  <meta name="twitter:description"
     content="Unleash the power of your phone. Experience effortless mobile mining like never before with VerusMiner." />
-  <meta property="twitter:image" content="https://pangz-lab.github.io/assets/img/verusminer/main-app.png" />
+  <meta name="twitter:image" content="https://pangz-lab.github.io/assets/img/verusminer/og-cover.png" />
+  <meta name="twitter:image:alt" content="VerusMiner mobile mining app" />
 
-  <!-- Meta Tags Generated with https://metatags.io -->
-
-  <!-- Favicons -->
-  <!-- <link href="favicon.ico" rel="icon"> -->
-  <!-- <link rel="icon" type="image/png" href="https://pangz-lab.github.io/verusminer/favicon.ico"/> -->
-  <link rel="icon" type="image/png" href="https://pangz-lab.github.io/assets/img/verusminer/main-app.png"/>
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!--
+    Favicons / app icons
+    Google Search: prefers a square icon ≥48×48, crawlable, declared via rel=icon.
+    Browsers also look for /favicon.ico next to the page path.
+  -->
+  <link rel="icon" href="https://pangz-lab.github.io/verusminer/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pangz-lab.github.io/assets/img/verusminer/icons/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="https://pangz-lab.github.io/assets/img/verusminer/icons/icon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="https://pangz-lab.github.io/assets/img/verusminer/icons/icon-96.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="https://pangz-lab.github.io/assets/img/verusminer/icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pangz-lab.github.io/assets/img/verusminer/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="https://pangz-lab.github.io/assets/img/verusminer/site.webmanifest" />
 
   <!-- Google Fonts -->
   <link
@@ -121,9 +138,8 @@
           <li><a class="nav-link scrollto" href="#downloads">Downloads</a></li>
           <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#faq">F.A.Q</a></li>
-          <!-- <li><a class="nav-link scrollto" href="https://my-verusminers.pangz.space/" target="_blank">Monitoring(MyVerusMiners)</a></li> -->
           <li>
-            <a class="nav-link scrollto nav-mvm" href="https://my-verusminers.pangz.space/" target="_blank" rel="noopener">
+            <a class="nav-link scrollto nav-mvm" href="https://pangz-lab.github.io/link?s=myverusminers.web" target="_blank" rel="noopener">
               <img src="../assets/img/verusminer/myverusminer-icon-mini.png" alt="" class="nav-mvm-icon" width="22" height="22">
               MyVerusMiners
             </a>
@@ -609,8 +625,6 @@
       <div class="container-fluid" data-aos="fade-up">
         <div class="gallery-slider swiper">
           <div class="swiper-wrapper" id="main-gallery"></div>
-          <div class="swiper-button-prev" aria-label="Previous screenshot"></div>
-          <div class="swiper-button-next" aria-label="Next screenshot"></div>
           <div class="swiper-pagination"></div>
         </div>
       </div>
@@ -835,20 +849,60 @@
 
     setDownloadCount('#counteUpContainer', () => { runDownloadCountup() });
 
-    // Dynamic gallery — same Swiper pattern as the original static Appland gallery:
-    // slidesPerView:'auto' + CSS width:auto so each slide matches image size.
-    let gallerySwiper = null;
-    let galleryLightbox = null;
-
+    // Gallery: basic Appland Swiper + images.json.
+    // Note: loop + slidesPerView:auto often leaves the active slide ~few slides
+    // left of true center; we re-measure then jump to middle real slide.
     loadGalleryImages('#main-gallery', '../assets/img/verusminer/gallery')
-      .then((slideCount) => {
-        if (!slideCount) {
-          console.warn('Gallery: no images loaded');
-          return;
+      .then(function (slideCount) {
+        if (!slideCount) return;
+
+        var swiper = new Swiper('.gallery-slider', {
+          speed: 400,
+          loop: true,
+          // Required for slidesPerView:'auto' + loop (wrong default = off-center active)
+          loopedSlides: slideCount,
+          loopAdditionalSlides: slideCount,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          spaceBetween: 20,
+          grabCursor: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+          },
+          on: {
+            init: function () {
+              this.update();
+            }
+          }
+        });
+
+        // Re-measure image widths, then put a real slide in the visual center.
+        // (User: active was ~3 slides left of true center — loop clones cause that.)
+        function alignCenter() {
+          swiper.updateSize();
+          swiper.updateSlides();
+          swiper.update();
+          var mid = Math.floor(slideCount / 2);
+          if (typeof swiper.slideToLoop === 'function') {
+            swiper.slideToLoop(mid, 0, false);
+          } else {
+            swiper.slideTo(mid, 0, false);
+          }
         }
-        initGallerySwiper(slideCount);
+        setTimeout(alignCenter, 50);
+        setTimeout(alignCenter, 200);
+
+        GLightbox({ selector: '.gallery-lightbox' });
       })
-      .catch((err) => console.error('Gallery load failed', err));
+      .catch(function (err) {
+        console.error('Gallery load failed', err);
+      });
 
     function downloadLatestApk() {
       window.open(AppVerifierManager().getLatestReleaseUrl(latestVersion), '_blank');
@@ -861,110 +915,37 @@
       })
     }
 
-    function waitForImages(root) {
-      const imgs = Array.from(root.querySelectorAll('img'));
-      if (!imgs.length) return Promise.resolve();
-      return Promise.all(imgs.map((img) => {
-        if (img.complete && img.naturalWidth) return Promise.resolve();
-        return new Promise((resolve) => {
-          img.addEventListener('load', resolve, { once: true });
-          img.addEventListener('error', resolve, { once: true });
-        });
-      }));
-    }
-
     async function loadGalleryImages(wrapperSelector, basePath) {
       const wrapper = document.querySelector(wrapperSelector);
       if (!wrapper) return 0;
 
-      const response = await fetch(`${basePath}/images.json`);
-      if (!response.ok) throw new Error('images.json HTTP ' + response.status);
+      const response = await fetch(basePath + '/images.json');
       const imageNames = await response.json();
 
       wrapper.innerHTML = '';
 
-      for (const name of imageNames) {
-        const src = `${basePath}/${name}`;
+      for (let i = 0; i < imageNames.length; i++) {
+        const name = imageNames[i];
+        const src = basePath + '/' + name;
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
-        // Match static HTML structure (img-fluid) so original CSS applies
         slide.innerHTML =
           '<a href="' + src + '" class="gallery-lightbox" data-gall="gallery-carousel">' +
-            '<img src="' + src + '" class="img-fluid" alt="VerusMiner ' + name + '" draggable="false">' +
+            '<img src="' + src + '" class="img-fluid" alt="">' +
           '</a>';
         wrapper.appendChild(slide);
       }
 
-      // Natural image size must be known before Swiper measures slides
-      await waitForImages(wrapper);
+      // Wait until images have size so slidesPerView:auto measures correctly
+      const imgs = wrapper.querySelectorAll('img');
+      await Promise.all(Array.prototype.map.call(imgs, function (img) {
+        if (img.complete && img.naturalWidth) return Promise.resolve();
+        return new Promise(function (resolve) {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      }));
       return imageNames.length;
-    }
-
-    function initGallerySwiper(slideCount) {
-      const el = document.querySelector('#gallery .gallery-slider');
-      if (!el || typeof Swiper === 'undefined') return;
-
-      if (gallerySwiper && gallerySwiper.destroy) {
-        try { gallerySwiper.destroy(true, true); } catch (e) { /* ignore */ }
-        gallerySwiper = null;
-      }
-
-      const middleIndex = Math.max(0, Math.floor(slideCount / 2));
-
-      // Original template config (main.js) — proven with static slides
-      gallerySwiper = new Swiper(el, {
-        speed: 400,
-        loop: slideCount > 2,
-        centeredSlides: true,
-        initialSlide: middleIndex,
-        grabCursor: true,
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-        watchSlidesProgress: true,
-        pagination: {
-          el: el.querySelector('.swiper-pagination'),
-          type: 'bullets',
-          clickable: true
-        },
-        navigation: {
-          nextEl: el.querySelector('.swiper-button-next'),
-          prevEl: el.querySelector('.swiper-button-prev')
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true
-        },
-        keyboard: { enabled: true },
-        // Avoid breakpoints that set numeric slidesPerView — they fight width:auto
-        on: {
-          init: function () {
-            this.update();
-          }
-        }
-      });
-
-      // After layout, re-measure image-driven widths
-      setTimeout(function () {
-        if (!gallerySwiper) return;
-        gallerySwiper.updateSize();
-        gallerySwiper.updateSlides();
-        gallerySwiper.update();
-      }, 150);
-      setTimeout(function () {
-        if (!gallerySwiper) return;
-        gallerySwiper.update();
-      }, 500);
-
-      // Lightbox after slides exist
-      try {
-        if (galleryLightbox && galleryLightbox.destroy) galleryLightbox.destroy();
-      } catch (e) { /* ignore */ }
-      galleryLightbox = GLightbox({
-        selector: '#gallery .gallery-lightbox',
-        touchNavigation: true,
-        loop: true
-      });
     }
   </script>
 
@@ -982,7 +963,7 @@
       border-radius: 4px;
       flex-shrink: 0;
     }
-    /* Contact / footer X (Twitter) brand icon */
+    /* Contact / footer X brand icon */
     .contact-x-icon {
       display: inline-flex;
       align-items: center;
@@ -1000,41 +981,6 @@
     }
     #footer .social-links a.x-social svg {
       display: block;
-    }
-
-    /* Gallery layout: full-bleed width, room for arrows */
-    #gallery .gallery-slider {
-      width: 100%;
-      max-width: 100%;
-      padding: 12px 48px 36px;
-      overflow: hidden;
-    }
-    #gallery .gallery-slider .swiper-button-prev,
-    #gallery .gallery-slider .swiper-button-next {
-      color: #3165D4;
-      width: 44px;
-      height: 44px;
-      margin-top: 0;
-      top: 45%;
-    }
-    #gallery .gallery-slider .swiper-button-prev:after,
-    #gallery .gallery-slider .swiper-button-next:after {
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    #gallery .gallery-slider .swiper-pagination {
-      position: relative;
-      margin-top: 12px;
-    }
-    @media (max-width: 575.98px) {
-      #gallery .gallery-slider {
-        padding: 8px 36px 28px;
-      }
-      /* Maximize screenshot width on small phones */
-      #gallery .gallery-slider .swiper-slide img {
-        max-width: min(88vw, 360px) !important;
-        max-height: min(75vh, 640px) !important;
-      }
     }
   </style>
 

@@ -1,0 +1,12 @@
+# VerusMiner GitHub Pages site version
+# Bump this when you want a clean client cache / deploy reset.
+# Usage:
+#   - Change VERSION string below
+#   - Redeploy / push the site
+#   - Optional: open with ?v=<VERSION> or hard-refresh (Ctrl+Shift+R)
+#
+# Format: YYYY.MM.DD[.patch]  (edit freely)
+
+VERSION=2026.08.16.2
+UPDATED=2026-08-16
+NOTES=gallery reset to basic Appland swiper + images.json; SEO/short links kept

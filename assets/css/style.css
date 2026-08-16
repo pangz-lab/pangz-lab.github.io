@@ -657,12 +657,18 @@ section {
 
 @media (min-width: 992px) {
   .gallery .swiper-wrapper {
-    padding: 24px 0;
+    padding: 40px 0;
   }
 
-  /* Mild emphasis only — heavy scale/border broke swipe hit-targets on large galleries */
+  /* Highlight active (template style) — scale on the slide content */
   .gallery .swiper-slide-active {
+    border: 6px solid #3165D4;
+    padding: 4px;
+    background: #fff;
     z-index: 1;
+    transform: scale(1.12);
+    margin-top: 10px;
+    border-radius: 25px;
   }
 }
 
@@ -1346,8 +1352,15 @@ section {
 }
 
 
-/* Do NOT force width:auto !important — it overrides Swiper inline widths and breaks swipe.
-   VerusMiner page styles the large main-image gallery; defaults kept mild for other pages. */
+/*
+ * Appland-style gallery: each slide sizes to its image (slidesPerView: 'auto').
+ * width:auto !important is required so Swiper does not force equal columns.
+ */
+.gallery-slider .swiper-slide {
+  width: auto !important;
+  height: auto;
+}
+
 .gallery-slider .swiper-slide a {
   display: block;
   border-radius: 14px;
@@ -1355,14 +1368,32 @@ section {
 }
 
 .gallery-slider .swiper-slide img {
-  max-height: 640px;
-  width: 100%;
+  /* Responsive max size — tall phone screenshots, maximize usable area */
+  max-height: min(78vh, 720px);
+  max-width: min(92vw, 420px);
+  width: auto;
   height: auto;
   display: block;
   border-radius: 14px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
   object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (min-width: 768px) {
+  .gallery-slider .swiper-slide img {
+    max-height: min(80vh, 760px);
+    max-width: min(48vw, 460px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .gallery-slider .swiper-slide img {
+    max-height: min(82vh, 800px);
+    max-width: 480px;
+  }
 }
 
 /* Hover */

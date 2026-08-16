@@ -7,6 +7,6 @@
 #
 # Format: YYYY.MM.DD[.patch]  (edit freely)
 
-VERSION=2026.08.16.2
+VERSION=2026.08.16.6
 UPDATED=2026-08-16
-NOTES=gallery reset to basic Appland swiper + images.json; SEO/short links kept
+NOTES=CenteredCardGallery (narrow/tall frames, height=image, active +10%, chevrons, blur lightbox); SEO favicons/og; short links (MVM, X community); features (build rec, custom pools, themes, i18n); contact X icon only

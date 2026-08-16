@@ -1,14 +1,17 @@
 {
-  "version": "2026.08.16.2",
+  "version": "2026.08.16.6",
   "updated": "2026-08-16",
-  "notes": "gallery reset to basic Appland swiper + images.json; SEO/short links kept",
+  "notes": "CenteredCardGallery (narrow/tall frames, height=image, active +10%, chevrons, blur lightbox); SEO favicons/og; short links (MVM, X community); features (build rec, custom pools, themes, i18n); contact X icon only",
   "assets": {
     "ogImage": "https://pangz-lab.github.io/assets/img/verusminer/og-cover.png",
     "favicon": "https://pangz-lab.github.io/verusminer/favicon.ico",
-    "galleryManifest": "https://pangz-lab.github.io/assets/img/verusminer/gallery/images.json"
+    "galleryManifest": "https://pangz-lab.github.io/assets/img/verusminer/gallery/images.json",
+    "galleryCss": "https://pangz-lab.github.io/assets/css/centered-card-gallery.css",
+    "galleryJs": "https://pangz-lab.github.io/assets/js/centered-card-gallery.js"
   },
   "shortLinks": {
     "myverusminers": "https://pangz-lab.github.io/link?s=myverusminers.web",
-    "communityX": "https://pangz-lab.github.io/link?s=verusminer.community.x"
+    "communityX": "https://pangz-lab.github.io/link?s=verusminer.community.x",
+    "profileX": "https://pangz-lab.github.io/link?s=pangz.sns.x"
   }
 }

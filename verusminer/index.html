@@ -16,7 +16,7 @@
     content="verus,verusminer,mining,phone mining,verusminer setting qr, qr setting verus miner,easy phone mining,quick mining,passive income,business for noobs,noob mining,verus mining,verus coin mining">
   <meta name="theme-color" content="#3165D4" />
   <!-- Site build version (see VERSION / version.json). Bump those files to force cache reset. -->
-  <meta name="verusminer-site-version" content="2026.08.16.2" />
+  <meta name="verusminer-site-version" content="2026.08.16.6" />
   <link rel="canonical" href="https://pangz-lab.github.io/verusminer/" />
 
   <!-- Open Graph / Facebook / Google link previews -->
@@ -73,6 +73,7 @@
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/centered-card-gallery.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: VerusMiner
@@ -205,11 +206,13 @@
 
         <!-- Features
         - Trusted mining pool selection
-        - Custom miner setting
+        - Custom miner setting / custom pools
         - Remote status monitoring
-        - History and nining health visualization
-        - Charge and temparature control
-        - QR Setting share -->
+        - History and mining health visualization
+        - Charge and temperature control
+        - QR Setting share
+        - Better build recommendation
+        - Themes + multi-language -->
 
         <div class="row no-gutters">
           <div class="col-xl-7 d-flex align-items-stretch order-2 order-lg-1">
@@ -250,6 +253,30 @@
                   <h4>Customization</h4>
                   <p>Commonly used settings are already defined but if the pre-defined settings are not enough, you are
                     allowed to customize.</p>
+                </div>
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="150">
+                  <i class="bx bx-chip"></i>
+                  <h4>Smarter build recommendations</h4>
+                  <p>Not sure which APK fits your phone? VerusMiner helps you pick a build that matches your device so
+                    you spend less time guessing and more time mining smoothly.</p>
+                </div>
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="250">
+                  <i class="bx bx-server"></i>
+                  <h4>Your own mining pools</h4>
+                  <p>Prefer a private or community pool? Add your own stratum host and port, save it once, and use it
+                    anytime—just like the built-in pool list.</p>
+                </div>
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="350">
+                  <i class="bx bx-palette"></i>
+                  <h4>Themes that fit your style</h4>
+                  <p>Switch looks when you want a calmer screen overnight or something brighter by day. A few taps and
+                    the app feels more like yours.</p>
+                </div>
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="450">
+                  <i class="bx bx-globe"></i>
+                  <h4>Multi-language support</h4>
+                  <p>Use VerusMiner in the language you're comfortable with. Menus and messages follow along so setup
+                    stays clear—even if English isn't your first language.</p>
                 </div>
               </div>
             </div>
@@ -623,10 +650,8 @@
       </div>
 
       <div class="container-fluid" data-aos="fade-up">
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper" id="main-gallery"></div>
-          <div class="swiper-pagination"></div>
-        </div>
+        <!-- Custom centered card gallery (not Swiper) -->
+        <div id="main-gallery" class="cg-host" aria-label="VerusMiner screenshots"></div>
       </div>
     </section><!-- End Gallery Section -->
 
@@ -671,12 +696,11 @@
               </div>
 
               <div class="col-lg-4 info">
-                <span class="contact-x-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" role="img" focusable="false">
+                <span class="contact-x-icon" aria-hidden="true" title="X">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" role="img" focusable="false" aria-label="X">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
                   </svg>
                 </span>
-                <h4>X</h4>
                 <p>
                   <a href="https://pangz-lab.github.io/link?s=verusminer.community.x" target="_blank" rel="noopener">Join VerusMiner Community on X</a><br>
                   <a href="https://pangz-lab.github.io/link?s=pangz.sns.x" target="_blank" rel="noopener">Send a DM on X!</a>
@@ -805,6 +829,7 @@
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/centered-card-gallery.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <!-- QR Codejs -->
   <script type="text/javascript" src="../assets/vendor/qrcodejs/jquery.min.js"></script>
@@ -849,60 +874,20 @@
 
     setDownloadCount('#counteUpContainer', () => { runDownloadCountup() });
 
-    // Gallery: basic Appland Swiper + images.json.
-    // Note: loop + slidesPerView:auto often leaves the active slide ~few slides
-    // left of true center; we re-measure then jump to middle real slide.
-    loadGalleryImages('#main-gallery', '../assets/img/verusminer/gallery')
-      .then(function (slideCount) {
-        if (!slideCount) return;
-
-        var swiper = new Swiper('.gallery-slider', {
-          speed: 400,
-          loop: true,
-          // Required for slidesPerView:'auto' + loop (wrong default = off-center active)
-          loopedSlides: slideCount,
-          loopAdditionalSlides: slideCount,
-          centeredSlides: true,
-          slidesPerView: 'auto',
-          spaceBetween: 20,
-          grabCursor: true,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-          },
-          on: {
-            init: function () {
-              this.update();
-            }
-          }
-        });
-
-        // Re-measure image widths, then put a real slide in the visual center.
-        // (User: active was ~3 slides left of true center — loop clones cause that.)
-        function alignCenter() {
-          swiper.updateSize();
-          swiper.updateSlides();
-          swiper.update();
-          var mid = Math.floor(slideCount / 2);
-          if (typeof swiper.slideToLoop === 'function') {
-            swiper.slideToLoop(mid, 0, false);
-          } else {
-            swiper.slideTo(mid, 0, false);
-          }
-        }
-        setTimeout(alignCenter, 50);
-        setTimeout(alignCenter, 200);
-
-        GLightbox({ selector: '.gallery-lightbox' });
-      })
-      .catch(function (err) {
-        console.error('Gallery load failed', err);
-      });
+    // Custom centered card gallery (CenteredCardGallery) — not Swiper
+    var galleryBase = '../assets/img/verusminer/gallery';
+    CenteredCardGallery.fromJson(
+      '#main-gallery',
+      galleryBase + '/images.json',
+      galleryBase,
+      {
+        autoplayMs: 5000,
+        loop: true,
+        startIndex: null // middle image after load
+      }
+    ).catch(function (err) {
+      console.error('Gallery load failed', err);
+    });
 
     function downloadLatestApk() {
       window.open(AppVerifierManager().getLatestReleaseUrl(latestVersion), '_blank');
@@ -913,39 +898,6 @@
         duration: 10000,
         delay: 20
       })
-    }
-
-    async function loadGalleryImages(wrapperSelector, basePath) {
-      const wrapper = document.querySelector(wrapperSelector);
-      if (!wrapper) return 0;
-
-      const response = await fetch(basePath + '/images.json');
-      const imageNames = await response.json();
-
-      wrapper.innerHTML = '';
-
-      for (let i = 0; i < imageNames.length; i++) {
-        const name = imageNames[i];
-        const src = basePath + '/' + name;
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML =
-          '<a href="' + src + '" class="gallery-lightbox" data-gall="gallery-carousel">' +
-            '<img src="' + src + '" class="img-fluid" alt="">' +
-          '</a>';
-        wrapper.appendChild(slide);
-      }
-
-      // Wait until images have size so slidesPerView:auto measures correctly
-      const imgs = wrapper.querySelectorAll('img');
-      await Promise.all(Array.prototype.map.call(imgs, function (img) {
-        if (img.complete && img.naturalWidth) return Promise.resolve();
-        return new Promise(function (resolve) {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      }));
-      return imageNames.length;
     }
   </script>
 

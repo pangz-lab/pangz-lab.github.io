@@ -607,8 +607,8 @@
 
       <div class="container-fluid" data-aos="fade-up">
         <div class="gallery-slider swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-1.jpg" class="gallery-lightbox"
+          <div class="swiper-wrapper" id="main-gallery">
+            <!-- <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-1.jpg" class="gallery-lightbox"
                 data-gall="gallery-carousel"><img src="../assets/img/verusminer/gallery/gallery-1.jpg" class="img-fluid"
                   alt=""></a></div>
             <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-2.jpg" class="gallery-lightbox"
@@ -638,9 +638,7 @@
             <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-10.jpg" class="gallery-lightbox"
                 data-gall="gallery-carousel"><img src="../assets/img/verusminer/gallery/gallery-10.jpg"
                   class="img-fluid" alt=""></a></div>
-            <!-- <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-11.png" class="gallery-lightbox" data-gall="gallery-carousel"><img src="../assets/img/verusminer/gallery/gallery-11.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a href="../assets/img/verusminer/gallery/gallery-12.png" class="gallery-lightbox" data-gall="gallery-carousel"><img src="../assets/img/verusminer/gallery/gallery-12.png" class="img-fluid" alt=""></a></div> -->
-          </div>
+                  </div> -->
           <div class="swiper-pagination"></div>
         </div>
 
@@ -856,6 +854,24 @@
 
     setDownloadCount('#counteUpContainer', () => { runDownloadCountup() });
 
+    // Call this after the DOM is ready
+    loadGalleryImages(
+      // '.gallery-slider .swiper-wrapper',
+      '#main-gallery',
+      '../assets/img/verusminer/gallery'
+    ).then(() => {
+      // Re-initialize Swiper after the slides are added
+      // (adjust according to how you currently init Swiper)
+      new Swiper('.gallery-slider', {
+        // your existing config...
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        // ...
+      });
+    });
+
     function downloadLatestApk() {
       window.open(AppVerifierManager().getLatestReleaseUrl(latestVersion), '_blank');
     }
@@ -865,6 +881,80 @@
         duration: 10000,
         delay: 20
       })
+    }
+
+    /**
+     * Dynamically load all gallery-*.jpg images into a Swiper wrapper
+     * with rounded corners + glowing border effects
+     */
+    async function loadGalleryImages(wrapperSelector, basePath, max = 50) {
+      const wrapper = document.querySelector(wrapperSelector);
+      if (!wrapper) return;
+
+      // Inject styles only once
+      if (!document.getElementById('gallery-glow-styles')) {
+        const style = document.createElement('style');
+        style.id = 'gallery-glow-styles';
+        style.textContent = `
+          .gallery-slider .swiper-slide a {
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+          }
+
+          .gallery-slider .swiper-slide img {
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            width: 100%;
+            display: block;
+          }
+
+          /* Hover effect */
+          .gallery-slider .swiper-slide:hover img {
+            border-color: rgba(100, 180, 255, 0.7);
+            box-shadow: 0 0 12px rgba(100, 180, 255, 0.5);
+          }
+
+          /* Active / selected slide glow */
+          .gallery-slider .swiper-slide-active img {
+            border-color: #4dabf7;
+            box-shadow: 0 0 18px rgba(77, 171, 247, 0.85),
+                        0 0 6px rgba(77, 171, 247, 0.6);
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      wrapper.innerHTML = '';
+
+      for (let i = 1; i <= max; i++) {
+        const src = `${basePath}/gallery-${i}.jpg`;
+
+        const exists = await new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = src;
+        });
+
+        if (!exists) break;
+
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+
+        // Inline styles as requested
+        slide.innerHTML = `
+          <a href="${src}" class="gallery-lightbox" data-gall="gallery-carousel"
+            style="border-radius: 12px; overflow: hidden; display: block;">
+            <img src="${src}" class="img-fluid" alt=""
+                style="border-radius: 12px; border: 2px solid rgba(255,255,255,0.25); width: 100%; display: block;">
+          </a>
+        `;
+
+        wrapper.appendChild(slide);
+      }
     }
   </script>
 
